@@ -1,7 +1,7 @@
 const socket = io.connect('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
-myVideo.muted = true;
+myVideo.muted = true; //keeps you from hearing yourself
 
 
 //set up peer
@@ -23,7 +23,6 @@ navigator.mediaDevices.getUserMedia({
     //answer call
     peer.on('call', call =>{
         call.answer(stream);
-        console.log('answer');
         const video = document.createElement('video');
         call.on('stream', userVideoStream => {
             addVideoStream(video, userVideoStream);
@@ -61,4 +60,5 @@ const addVideoStream = (video, stream) => {
     //attach video to grid element 
     videoGrid.append(video);
 }
+
 

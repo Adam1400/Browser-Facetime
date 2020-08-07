@@ -2,10 +2,13 @@ body{
     background-color:purple;
     height:100vh;
     width: 100%;
+    margin:0;
+    padding: 0%;
     overflow-x: hidden;
     
 }
 .videoGrid{
+    
     display:flex;
     justify-content: center;
     align-content: center;
@@ -19,16 +22,21 @@ body{
 }
 
 video{
-    position: relative;
+    transition: all 1s ease-in-out;
     transform: scaleX(1.2);
-    background-color:transparent;
     width: 40%;
-    max-width: 600px;
+    max-width: 550px;
     min-width: 300px;
-    padding-left: 5.3%;
-    padding-right: 5.3%;
+    
     padding-bottom: .3rem;
 }
+
+video:hover{
+    transition: all 1s ease-in-out;
+    width: 60%;
+    max-width: 1000px;
+}
+
 
 
 
@@ -44,8 +52,6 @@ video{
     }
     video{
         min-width: 290px;
-        padding-left:0%;
-        padding-right: 2%;
         overflow:hidden;
     }
 
