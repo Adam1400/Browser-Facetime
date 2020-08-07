@@ -1,7 +1,7 @@
 const socket = io.connect('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
-//myVideo.muted = true;
+myVideo.muted = true;
 
 
 //set up peer
