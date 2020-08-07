@@ -27,6 +27,8 @@ video{
     width: 40%;
     max-width: 550px;
     min-width: 300px;
+    padding-left: 4%;
+    padding-right: 4%;
     order: 1;
     padding-bottom: .3rem;
 }
