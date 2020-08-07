@@ -12,30 +12,33 @@ var peer = new Peer(undefined, {
 });
 
 //set up audio video stream
-let myVideoStream;
-myVideo.muted = true; //keeps you from hearing yourself
-const peers = {}
-navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: {channelCount: 2} //2 for sterio 1 for mono
-}).then(stream =>{
-    myVideoStream = stream;
-    addVideoStream(myVideo, stream);
+try{
+    let myVideoStream;
+    myVideo.muted = true; //keeps you from hearing yourself
+    const peers = {}
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: {channelCount: 2} //2 for sterio 1 for mono
+    }).then(stream =>{
+        myVideoStream = stream;
+        addVideoStream(myVideo, stream);
 
-    //answer call
-    peer.on('call', call =>{
-        call.answer(stream);
-        const video = document.createElement('video');
-        call.on('stream', userVideoStream => {
-            addVideoStream(video, userVideoStream);
+        //answer call
+        peer.on('call', call =>{
+            call.answer(stream);
+            const video = document.createElement('video');
+            call.on('stream', userVideoStream => {
+                addVideoStream(video, userVideoStream);
+            })
+        })
+
+        //emit room with whos in it
+        socket.on('user-connected', userId =>{
+            connectToNewUser(userId, stream);
         })
     })
-
-    //emit room with whos in it
-    socket.on('user-connected', userId =>{
-        connectToNewUser(userId, stream);
-    })
-})
+}
+catch{console.log("No camera")}
 
 //disconnect peer
 socket.on('user-disconnected', userId => {
@@ -52,11 +55,9 @@ const connectToNewUser = (userId, stream) =>{
     //console.log('new user joined : '+ userId);
     const call = peer.call(userId, stream);
     const video = document.createElement('video');
-    try{
         call.on('stream', userVideoStream =>{
             addVideoStream(video, userVideoStream);
         })
-    }catch{}
     //hang up
     call.on('close', () => {
         video.remove()
@@ -68,15 +69,12 @@ const connectToNewUser = (userId, stream) =>{
 
 //play stream
 const addVideoStream = (video, stream) => {
-    try{
         video.srcObject = stream;
         video.addEventListener('loadedmetadata', () =>{
             video.play()
         })
         //attach video to grid element 
         videoGrid.append(video);
-    }
-    catch{console.log('no cam');}
 }
 
 
