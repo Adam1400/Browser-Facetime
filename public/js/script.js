@@ -1,7 +1,7 @@
 const socket = io.connect('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
-myVideo.muted = true; //keeps you from hearing yourself
+
 
 
 //set up peer
@@ -13,6 +13,8 @@ var peer = new Peer(undefined, {
 
 //set up audio video stream
 let myVideoStream;
+myVideo.muted = true; //keeps you from hearing yourself
+const peers = {}
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: {channelCount: 2} //2 for sterio 1 for mono
@@ -35,6 +37,11 @@ navigator.mediaDevices.getUserMedia({
     })
 })
 
+//disconnect peer
+socket.on('user-disconnected', userId => {
+    if (peers[userId]) peers[userId].close()
+  })
+
 //connect peer
 peer.on('open', id =>{
     socket.emit('join-room', ROOM_ID, id);
@@ -48,6 +55,12 @@ const connectToNewUser = (userId, stream) =>{
     call.on('stream', userVideoStream =>{
         addVideoStream(video, userVideoStream);
     })
+    //hang up
+    call.on('close', () => {
+        video.remove()
+      })
+    
+      peers[userId] = call
 }
 
 
