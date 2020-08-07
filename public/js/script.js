@@ -1,7 +1,6 @@
 const socket = io.connect('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
-const peers = {}
 
 
 //set up peer
@@ -38,10 +37,6 @@ var peer = new Peer(undefined, {
         })
     })
 
-//disconnect peer
-socket.on('user-disconnected', userId => {
-    if (peers[userId]) peers[userId].close()
-  })
 
 //connect peer
 peer.on('open', id =>{
@@ -56,12 +51,6 @@ const connectToNewUser = (userId, stream) =>{
     call.on('stream', userVideoStream =>{
         addVideoStream(video, userVideoStream);
     })
-    //hang up
-    call.on('close', () => {
-        video.remove()
-      })
-    
-      peers[userId] = call
 }
 
 
