@@ -52,9 +52,11 @@ const connectToNewUser = (userId, stream) =>{
     //console.log('new user joined : '+ userId);
     const call = peer.call(userId, stream);
     const video = document.createElement('video');
-    call.on('stream', userVideoStream =>{
-        addVideoStream(video, userVideoStream);
-    })
+    try{
+        call.on('stream', userVideoStream =>{
+            addVideoStream(video, userVideoStream);
+        })
+    }catch{}
     //hang up
     call.on('close', () => {
         video.remove()
@@ -66,12 +68,15 @@ const connectToNewUser = (userId, stream) =>{
 
 //play stream
 const addVideoStream = (video, stream) => {
-    video.srcObject = stream;
-    video.addEventListener('loadedmetadata', () =>{
-        video.play()
-    })
-    //attach video to grid element 
-    videoGrid.append(video);
+    try{
+        video.srcObject = stream;
+        video.addEventListener('loadedmetadata', () =>{
+            video.play()
+        })
+        //attach video to grid element 
+        videoGrid.append(video);
+    }
+    catch{console.log('no cam');}
 }
 
 
