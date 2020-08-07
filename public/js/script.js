@@ -11,11 +11,12 @@ var peer = new Peer(undefined, {
     port: '443'
 });
 
+const peers = {}
 //set up audio video stream
 try{
     let myVideoStream;
     myVideo.muted = true; //keeps you from hearing yourself
-    const peers = {}
+    
     navigator.mediaDevices.getUserMedia({
         video: true,
         audio: {channelCount: 2} //2 for sterio 1 for mono
