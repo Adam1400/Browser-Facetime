@@ -1,18 +1,53 @@
-
+body{
+    background-color:purple;
+    height:100vh;
+    width: 100%;
+    overflow-x: hidden;
+    
+}
 .videoGrid{
-    background-color: purple;
     display:flex;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    
+    padding-top: 1.8%;
+    padding-bottom: 1.8%;
+    margin-bottom: 5rem;
+ 
+    overflow:hidden; 
 
 }
 
 video{
-    transform: scaleX(1.2);
-    margin: 3rem auto;
-    max-width: 600px;
     position: relative;
-    
+    transform: scaleX(1.2);
+    background-color:transparent;
+    width: 40%;
+    max-width: 600px;
+    min-width: 300px;
+    padding-left: 4.3%;
+    padding-right: 5.3%;
+    padding-bottom: .3rem;
 }
+
+
+
+@media(max-width:450px){
+
+    body{
+        overflow-x: hidden;
+        overflow-y:auto;
+    }
+        .videoGrid{
+        margin-bottom:5rem;
+
+    }
+    video{
+        min-width: 290px;
+        padding-left:0%;
+        padding-right: 2%;
+        overflow:hidden;
+    }
+
+}
+
