@@ -27,9 +27,8 @@ video{
     width: 40%;
     max-width: 550px;
     min-width: 300px;
-    padding-left: 4%;
-    padding-right: 4%;
-    order: 1;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-bottom: .3rem;
 }
 
@@ -37,7 +36,6 @@ video:hover{
     transition: all 1s ease-in-out;
     width: 60%;
     max-width: 1000px;
-    order: 0;
 }
 
 
