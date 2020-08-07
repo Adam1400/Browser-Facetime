@@ -1,7 +1,7 @@
 const socket = io.connect('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
-
+const peers = {}
 
 
 //set up peer
@@ -11,9 +11,8 @@ var peer = new Peer(undefined, {
     port: '443'
 });
 
-const peers = {}
+
 //set up audio video stream
-try{
     let myVideoStream;
     myVideo.muted = true; //keeps you from hearing yourself
     
@@ -38,8 +37,6 @@ try{
             connectToNewUser(userId, stream);
         })
     })
-}
-catch{console.log("No camera")}
 
 //disconnect peer
 socket.on('user-disconnected', userId => {
