@@ -53,9 +53,9 @@ const connectToNewUser = (userId, stream) =>{
     //console.log('new user joined : '+ userId);
     const call = peer.call(userId, stream);
     const video = document.createElement('video');
-        call.on('stream', userVideoStream =>{
-            addVideoStream(video, userVideoStream);
-        })
+    call.on('stream', userVideoStream =>{
+        addVideoStream(video, userVideoStream);
+    })
     //hang up
     call.on('close', () => {
         video.remove()
