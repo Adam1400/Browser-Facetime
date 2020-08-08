@@ -16,10 +16,12 @@ body{
     background-color: red;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 video{
-    width: 33.3%;
-    padding: 1%;
+    transform: scaleX(1.2);
+    width: 25%;
+    padding: 3%;
 }
 
