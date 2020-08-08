@@ -10,12 +10,6 @@ app.set('view engine', 'pug');
 //use public files
 app.use(express.static('public'));
 
-//set up peer to peer
-const { ExpressPeerServer } = require('peer');
-const peerServer = ExpressPeerServer(server, {
-    debug: true
-});
-
 
 
 //generate a unique room
@@ -32,18 +26,22 @@ app.get('/:room', (req, res) => {
     res.render('room', {title: Id , roomId: req.params.room });
 })
 
-//establish peer
-app.use('/peerjs', peerServer);
+
 
 
 
 //open socket listen for other users
-io.on('connection', socket =>{
-    socket.on('join-room' , (roomId, userId) =>{
-        socket.join(roomId);
-        socket.to(roomId).broadcast.emit('user-connected', userId);
+io.on("connection", (socket) => {
+    socket.on("join-room", (roomId, userId) => {
+      socket.join(roomId);
+      socket.to(roomId).broadcast.emit("user-connected", userId);
+  
+      socket.on("disconnect", () => {
+        socket.to(roomId).broadcast.emit("user-disconnected", userId);
+      });
     });
-});
+  });
+  
 
 
 
