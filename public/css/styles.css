@@ -9,45 +9,17 @@ body{
   background: #e6f1f7;
   position: relative;
   margin: .5rem;
+  box-sizing: inherit;
 }
 
 .videoGrid{
-  background-color: red;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: center;
-  
-
-
-
+    background-color: red;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 video{
-    transform: scaleX(1.2);
-    height: 400px;
-    max-width: 600px;
-    min-width: 300px;
-    padding-bottom: 2rem;
-}
-
-
-
-
-@media(max-width:450px){
-
-    body{
-        overflow-x: hidden;
-        overflow-y:auto;
-    }
-        .videoGrid{
-        margin-bottom:5rem;
-
-    }
-    video{
-        min-width: 290px;
-        overflow:hidden;
-    }
-
+    width: 33.3%;
+    padding: 1%;
 }
 
