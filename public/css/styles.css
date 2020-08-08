@@ -2,27 +2,31 @@ body{
     background-color:purple;
     width: 100%;
     overflow-x: hidden;
+    margin:0;
 }
 .videoWraper{
   min-height: 92vh;
   background: #e6f1f7;
   position: relative;
+  margin: .5rem;
 }
+
 .videoGrid{
-  justify-content: center;
-  align-content: center;
+  background-color: red;
   display: flex;
   flex-wrap: wrap;
-  grid-auto-rows: 300px;
-  grid-gap: 2rem;
-  margin: 1rem 2rem 1rem 2rem; 
+  justify-content: space-around;
+  align-content: center;
+  
+
+
 
 }
 
 video{
     transform: scaleX(1.2);
-    object-fit: cover;
-    max-width: 350px;
+    height: 400px;
+    max-width: 600px;
     min-width: 300px;
     padding-bottom: .3rem;
 }
