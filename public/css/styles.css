@@ -22,6 +22,22 @@ body{
 video{
     transform: scaleX(1.2);
     width: 25%;
-    padding: 3%;
+    padding: 1%;
+    position: relative;
+    transition: .5s all ease;
+}
+
+video:hover{
+    width: 35%;
+}
+
+@media(max-width: 450px){
+    video{
+        width:80%;
+    }
+
+    video:hover{
+        width: 80%;
+    }
 }
 
