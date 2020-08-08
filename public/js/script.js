@@ -1,83 +1,65 @@
-const socket = io("/");
-const videoGrid = document.getElementById("video-grid");
-const myVideo = document.createElement("video");
+const socket = io.connect('/');
+const videoGrid = document.getElementById('video-grid');
+const myVideo = document.createElement('video');
 
-//establish peer
-const myPeer = new Peer(undefined, {
-  host: "/",
-  port: "443",
+//set up peer
+var peer = new Peer(undefined, {
+    path: '/peerjs',
+    host: '/',
+    port: '443'
 });
 
+//set up audio video stream
+    let myVideoStream 
+    myVideo.muted = true; //keeps you from hearing yourself
+    
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: {channelCount: 2}, //2 for sterio 1 for mono
+    }).then(stream =>{
+        myVideoStream = stream;
+        addVideoStream(myVideo, stream);
+
+        //answer call
+        peer.on('call', call =>{
+            call.answer(stream);
+            const video = document.createElement('video');
+            call.on('stream', userVideoStream => {
+                addVideoStream(video, userVideoStream);
+            })
+        })
+
+        //emit room with whos in it
+        socket.on('user-connected', userId =>{
+            connectToNewUser(userId, stream);
+        })
+    })
 
 
-myVideo.muted = true;
-const peers = {};
-navigator.mediaDevices
-  .getUserMedia({
-    video: true,
-    audio: {channelCount: 2}, //2 for sterio 1 for mono
-  })
-  .then((stream) => {
-    addVideoStream(myVideo, stream);
+//connect peer
+peer.on('open', id =>{
+    socket.emit('join-room', ROOM_ID, id);
+})
 
-    myPeer.on("call", (call) => {
-      call.answer(stream);
-      const video = document.createElement("video");
-      call.on("stream", (userVideoStream) => {
+//call room with video
+const connectToNewUser = (userId, stream) =>{
+    //console.log('new user joined : '+ userId);
+    const call = peer.call(userId, stream);
+    const video = document.createElement('video');
+    call.on('stream', userVideoStream =>{
         addVideoStream(video, userVideoStream);
-      });
-    });
-
-    socket.on("user-connected", (userId) => {
-      console.log("New User Connected");
-      connectToNewUser(userId, stream);
-    });
-  });
-
-socket.on("user-disconnected", (userId) => {
-  console.log("New User Disconnected");
-  if (peers[userId]) peers[userId].close();
-});
-
-myPeer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id);
-});
-
-function connectToNewUser(userId, stream) {
-  const call = myPeer.call(userId, stream);
-  const video = document.createElement("video");
-  call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
-  });
-  call.on("close", () => {
-    video.remove();
-  });
-
-  peers[userId] = call;
+    })
 }
 
-function addVideoStream(video, stream) {
-  video.srcObject = stream;
-  video.addEventListener("loadedmetadata", () => {
-    video.play();
-  });
-  videoGrid.append(video);
+
+//play stream
+const addVideoStream = (video, stream) => {
+        video.srcObject = stream;
+        video.addEventListener('loadedmetadata', () =>{
+            video.play()
+        })
+        //attach video to grid element 
+        videoGrid.append(video);
 }
 
-// URL Copy To Clipboard
-//document.getElementById("invite-button").addEventListener("click", getURL);
 
-function getURL() {
-  const c_url = window.location.href;
-  copyToClipboard(c_url);
-  alert("Url Copied to Clipboard,\nShare it with your Friends!\nUrl: " + c_url);
-}
-
-function copyToClipboard(text) {
-  var dummy = document.createElement("textarea");
-  document.body.appendChild(dummy);
-  dummy.value = text;
-  dummy.select();
-  document.execCommand("copy");
-  document.body.removeChild(dummy);
-}
