@@ -24,15 +24,18 @@ video{
     width: 25%;
     padding: 1%;
     position: relative;
-    transition: .5s all ease;
+    transition: .8s all ease-in-out;
 }
 
+/*this needs to be on click*/
 video:hover{
-    width: 35%;
+  padding: 2.5%;
+    width: 52%;
 }
 
 @media(max-width: 450px){
     video{
+
         width:80%;
     }
 
