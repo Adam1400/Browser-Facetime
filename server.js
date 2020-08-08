@@ -7,14 +7,23 @@ const { v4: uuidV4 } = require("uuid");
 app.set("view engine", "pug");
 app.use(express.static("public"));
 
+
+//initial render into room redirect
 app.get("/", (req, res) => {
-  res.redirect(`/${uuidV4()}`);
+  var longId = uuidV4();
+  var Id = longId.substring(0,4); //shorten launch code id down
+  console.log('Room: '+ Id);
+  res.redirect(`/${Id}`);
 });
 
+//generate room
 app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
+    var RoomId = 'Room: ' + req.params.room;
+    res.render('room', {title: RoomId , roomId: req.params.room });
 });
 
+
+//coin and quit logic
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
