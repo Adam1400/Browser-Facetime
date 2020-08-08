@@ -9,8 +9,17 @@ myVideo.muted = true; //so you dont hear yourself
 
 navigator.mediaDevices
   .getUserMedia({
-    video: true,
-    audio: {channelCount: 2}, //2 for sterio audio 1 for mono
+    video: {
+        width: { ideal: 1920 },
+        height: { ideal: 1080 },
+        aspectRatio: { ideal: 1.7777777778 },
+        frameRate: { ideal: 60 }
+      },
+    audio: {
+      sampleSize: 16,
+      channelCount: 2, //2 for sterio audio 1 for mono
+      echoCancellation: true
+    }
   })
   .then((stream) => {
     myVideoStream = stream;
