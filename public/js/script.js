@@ -9,7 +9,6 @@ myVideo.muted = true; //so you dont hear yourself
 
 navigator.mediaDevices.getUserMedia({
     video:{ 
-        aspectRatio: { ideal: 4/3 },
         facingMode: { ideal: "user" }
     },
     audio: {
