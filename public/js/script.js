@@ -7,18 +7,13 @@ const peers = {};
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
 
-navigator.mediaDevices
-  .getUserMedia({
-    video: {
-        width: { ideal: 1920 },
-        height: { ideal: 1080 },
-        aspectRatio: { ideal: 1.7777777778 },
-        frameRate: { ideal: 60 }
-      },
+navigator.mediaDevices.getUserMedia({
+    video:{ 
+        aspectRatio: { ideal: 4/3 },
+        facingMode: { ideal: "user" }
+    },
     audio: {
-      sampleSize: 16,
       channelCount: 2, //2 for sterio audio 1 for mono
-      echoCancellation: true
     }
   })
   .then((stream) => {
@@ -39,7 +34,13 @@ navigator.mediaDevices
       console.log("New User Connected");
       connectToNewUser(userId, stream);
     });
-  });
+  }).catch(function(reason) {
+    /* failed to apply constraints; reason is why */
+    console.log("Device does not suport streaming ==> "+ reason);
+});
+
+
+  
 
 //leave call
 socket.on("user-disconnected", (userId) => {
@@ -57,7 +58,7 @@ function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
+    addVideoStream(video, userVideoStream, min);
   });
   //leave call
   call.on("close", () => {
@@ -76,6 +77,9 @@ function addVideoStream(video, stream) {
   videoGrid.append(video);
 }
 
+
+
+
 //mute functionality
 const muteUnmute = () => {
     const enabled = myVideoStream.getAudioTracks()[0].enabled;
@@ -90,7 +94,6 @@ const muteUnmute = () => {
   
  //stop video functionality 
   const playStop = () => {
-    console.log('object')
     let enabled = myVideoStream.getVideoTracks()[0].enabled;
     if (enabled) {
       myVideoStream.getVideoTracks()[0].enabled = false;
@@ -101,6 +104,7 @@ const muteUnmute = () => {
     }
   }
   
+  //mute audio button
   const setMuteButton = () => {
     const html = `
     <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-mic" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -120,6 +124,8 @@ const muteUnmute = () => {
     document.querySelector('.mute').innerHTML = html;
   }
   
+
+  //mute video button
   const setStopVideo = () => {
     const html = `
     <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-camera-video" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -139,3 +145,5 @@ const muteUnmute = () => {
     `
     document.querySelector('.cut').innerHTML = html;
   }
+
+ 
