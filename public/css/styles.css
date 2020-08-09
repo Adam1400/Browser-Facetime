@@ -26,6 +26,7 @@ video{
     width: 25%;
     padding: 1%;
     position: relative;
+    background-color: transparent;
     transition: .8s all ease-in-out;
 }
 
