@@ -60,9 +60,20 @@ footer{
     background-color: chartreuse;
 }
 
+.roomInfo{
+    flex:1;
+    position: relative;
+    margin: 0.5rem;
+    background-color: darkgoldenrod;
+    
+  
+}
+
+
+
 .controlsWrapper{
     position: relative;
-    top: 10%;
+    padding: .2rem;
     width:15rem;
     margin: 0.5rem;
     display: flex;
@@ -78,9 +89,20 @@ footer{
 }
 
 .room{
+    flex:1;
     position: relative;
     margin: 0.5rem;
+    padding:.5rem;
     background-color: darkgoldenrod;
-  
+    display:flex;
+    justify-content: flex-end;
 }
+
+.btn{
+    margin-left: .5rem;
+    margin-right: .5rem;
+    width: 18%;
+    min-width: 60px;
+}
+
 
