@@ -51,7 +51,9 @@ html
                     name='joinId' 
                     placeholder='Room'
                     value=data.joinId
-                    minLength='4')
+                    pattern="[0-9]{4}"
+                    required
+                    )
                 button.btn.btn-info.invite(type='submit' value='Submit') join
                 button.btn.btn-success.invite(type='button') invite
 
