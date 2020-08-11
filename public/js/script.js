@@ -32,6 +32,7 @@ navigator.mediaDevices.getUserMedia({
     socket.on("user-connected", (userId) => {
       console.log("New User Connected");
       connectToNewUser(userId, stream);
+      location.reload();
     });
   }).catch(function(reason) {
     /* failed to apply constraints; reason is why */
@@ -43,8 +44,9 @@ navigator.mediaDevices.getUserMedia({
 
 //leave call
 socket.on("user-disconnected", (userId) => {
-  console.log("New User Disconnected");
+  console.log("User Disconnected");
   if (peers[userId]) peers[userId].close();
+  location.reload();
 });
 
 //brodcast signal
