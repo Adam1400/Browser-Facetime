@@ -69,8 +69,6 @@ footer{
   
 }
 
-
-
 .controlsWrapper{
     position: relative;
     padding: .2rem;
@@ -98,11 +96,48 @@ footer{
     justify-content: flex-end;
 }
 
+
+form{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background-color: darkslateblue;
+}
+
 .btn{
     margin-left: .5rem;
     margin-right: .5rem;
     width: 18%;
+    max-width: 70px;
     min-width: 60px;
 }
 
+input{
+    text-align: center;
+    width: 5%;
+    max-width: 70px;
+}
 
+
+@media(max-width: 750px){
+    .roomInfo{
+        display: none;
+    }
+    .controlsWrapper{
+        flex: 1;
+        margin-right: .2rem;
+        margin-left: .2rem;
+        padding-left: 0%;
+    }
+    .room{
+        flex:1.6;
+        margin: 0;
+        padding:0;
+    }
+    form{
+        justify-content: center;
+    }
+    .btn{
+        margin-left: .1rem;
+    }
+}

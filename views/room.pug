@@ -42,8 +42,14 @@ html
                     path(fill-rule='evenodd' d='M11.25 5.65l2.768-1.605a.318.318 0 0 1 .482.263v7.384c0 .228-.26.393-.482.264l-2.767-1.605-.502.865 2.767 1.605c.859.498 1.984-.095 1.984-1.129V4.308c0-1.033-1.125-1.626-1.984-1.128L10.75 4.785l.502.865z')
         
         .room
-            button.btn.btn-info.invite(type='button') join
-            button.btn.btn-success.invite(type='button') invite
+            form.form-inline(action='/' method='POST')
+                input.form-control(
+                    type='text' 
+                    id='joinId' 
+                    name='joinId' 
+                    placeholder='Room')
+                button.btn.btn-info.invite(type='submit') join
+                button.btn.btn-success.invite(type='button') invite
 
             
 
