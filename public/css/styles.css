@@ -28,6 +28,7 @@ video{
     position: relative;
     background-color: transparent;
     transition: .8s all ease-in-out;
+    
 }
 
 /*this needs to be on click*/
@@ -65,7 +66,7 @@ footer{
     position: relative;
     margin: 0.5rem;
     background-color: darkgoldenrod;
-    
+    text-align: center;
   
 }
 
