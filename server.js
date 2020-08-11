@@ -1,10 +1,19 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const { v4: uuidV4 } = require("uuid");
 
+//pug
 app.set("view engine", "pug");
+
+// set up body-parser
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: true })); 
+
+
+//use static elements
 app.use(express.static("public"));
 
 
@@ -22,8 +31,14 @@ app.get("/:room", (req, res) => {
     res.render('room', {title: RoomId , roomId: req.params.room });
 });
 
+//switching rooms
+app.post('/', (req, res) =>{
+  console.log('Switched to room: '+ req.body.joinId);
+  res.redirect(`/${req.body.joinId}`);
+})
 
-//coin and quit logic
+
+//join and quit logic
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
@@ -34,6 +49,8 @@ io.on("connection", (socket) => {
     });
   });
 });
+
+
 
 const PORT = process.env.PORT || 3000;
 
