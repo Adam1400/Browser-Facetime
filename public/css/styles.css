@@ -1,5 +1,5 @@
 body{
-    background-color:purple;
+    background-color:#111011;
     width: 100%;
     overflow-x: hidden;
     margin:0;
@@ -8,14 +8,13 @@ body{
 .videoWrapper{
   min-height: 91vh;
   height: auto;
-  background: #e6f1f7;
   position: relative;
   margin: .5rem;
   box-sizing: inherit;
 }
 
 .videoGrid{
-    background-color: red;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -57,16 +56,18 @@ footer{
     display: flex;
     justify-content: space-between;
   
-
-    background-color: chartreuse;
+    opacity: 0.85;
+    background-color: white;
 }
 
 .roomInfo{
     flex:1;
     position: relative;
     margin: 0.5rem;
-    background-color: darkgoldenrod;
+    padding-top: 0.75rem;
     text-align: center;
+    color: black;
+
   
 }
 
@@ -79,7 +80,6 @@ footer{
     justify-content: space-evenly;
     align-content: center;
     color: black;
-    background-color: cyan;
 }
 
 /* When muted */
@@ -92,7 +92,6 @@ footer{
     position: relative;
     margin: 0.5rem;
     padding:.5rem;
-    background-color: darkgoldenrod;
     display:flex;
     justify-content: flex-end;
 }
@@ -102,7 +101,6 @@ form{
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    background-color: darkslateblue;
 }
 
 .btn{
