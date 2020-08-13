@@ -55,7 +55,9 @@ html
                     required
                     )
                 button.btn.btn-info.invite(type='submit' value='Submit') join
-                button.btn.btn-success.invite(type='button' id='invite' onclick="copyRoom()") invite
+                button.btn.btn-success.invite(type='button' id='invite') invite
+                .popup(onclick='myFunction()')
+                    span#myPopup.popuptext URL Copied to Clipboard 
 
             
 

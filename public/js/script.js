@@ -148,20 +148,27 @@ const muteUnmute = () => {
   }
 
 
-  //Copy room key
-function copyRoom(){
-  const copyText = document.querySelector('.currentRoom').innerHTML;
-  const roomNum = copyText.substring(6, 10);
-  
-  console.log(roomNum);
-//   roomNum.select();
-//   roomNum.setSelectionRange(0, 99999); /*For mobile devices*/
+// URL Copy To Clipboard
+document.getElementById("invite").addEventListener("click", getURL);
 
-//   document.execCommand("copy");
+function getURL() {
+  const c_url = window.location.href;
+  copyToClipboard(c_url);
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+  document.querySelector('video').innerHTML = document.querySelector('video').innerHTML + "class='testing'";
+}
 
-//   /* Alert the copied text */
-//   alert("Copied the text: " + roomNum.value);
+function copyToClipboard(text) {
+  var dummy = document.createElement("textarea");
+  document.body.appendChild(dummy);
+  dummy.value = text;
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
+}
 
- }
+
+
 
  
