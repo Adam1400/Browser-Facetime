@@ -162,6 +162,6 @@ function copyRoom(){
 //   /* Alert the copied text */
 //   alert("Copied the text: " + roomNum.value);
 
-// }
+ }
 
  
