@@ -16,7 +16,7 @@ html
         //- SCRIPT
         script.
             const ROOM_ID = "#{roomId}";
-        script(defer src='https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js')
+        script(src='https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js' defer)
         script(src='/socket.io/socket.io.js' defer)
         script(src='/js/script.js' defer)
         -data = data || {}
@@ -30,7 +30,7 @@ html
     
     footer
         .roomInfo
-          h4= `${title}`
+          h4.currentRoom= `${title}`
 
         .controlsWrapper
             .mute(onclick="muteUnmute()")
@@ -55,7 +55,7 @@ html
                     required
                     )
                 button.btn.btn-info.invite(type='submit' value='Submit') join
-                button.btn.btn-success.invite(type='button') invite
+                button.btn.btn-success.invite(type='button' id='invite' onclick="copyRoom()") invite
 
             
 

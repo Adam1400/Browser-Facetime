@@ -59,7 +59,7 @@ function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream, min);
+    addVideoStream(video, userVideoStream);
   });
   //leave call
   call.on("close", () => {
@@ -146,5 +146,22 @@ const muteUnmute = () => {
     `
     document.querySelector('.cut').innerHTML = html;
   }
+
+
+  //Copy room key
+function copyRoom(){
+  const copyText = document.querySelector('.currentRoom').innerHTML;
+  const roomNum = copyText.substring(6, 10);
+  
+  console.log(roomNum);
+//   roomNum.select();
+//   roomNum.setSelectionRange(0, 99999); /*For mobile devices*/
+
+//   document.execCommand("copy");
+
+//   /* Alert the copied text */
+//   alert("Copied the text: " + roomNum.value);
+
+// }
 
  
