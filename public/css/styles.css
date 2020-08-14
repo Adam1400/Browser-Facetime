@@ -36,7 +36,7 @@ video{
 }
 
 /*this needs to be on click*/
-video:hover{
+.testing{
   padding: 2.5%;
     width: 57%;
 }

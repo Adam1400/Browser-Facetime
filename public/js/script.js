@@ -2,7 +2,7 @@ const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer();
 const myVideo = document.createElement("video");
-const peers = {}; 
+const peers = {};
 
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
@@ -154,9 +154,14 @@ document.getElementById("invite").addEventListener("click", getURL);
 function getURL() {
   const c_url = window.location.href;
   copyToClipboard(c_url);
-  var popup = document.getElementById("myPopup");
+  const popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
-  document.querySelector('video').innerHTML = document.querySelector('video').innerHTML + "class='testing'";
+
+
+  // //testing
+  // const vid = document.getElementsByTagName("video")[0];
+  // vid.classList.toggle("testing");
+
 }
 
 function copyToClipboard(text) {
@@ -167,6 +172,36 @@ function copyToClipboard(text) {
   document.execCommand("copy");
   document.body.removeChild(dummy);
 }
+
+//test
+//document.getElementById("roomInfo").addEventListener("click", addExpand);
+document.querySelector('html').addEventListener("mouseover", addExpand);
+
+
+function addExpand(){
+  var numPeers = document.getElementsByTagName("video").length;
+
+  for (var i = 0; i < numPeers ; i++) {
+    const vid = document.getElementsByTagName("video")[i];
+    //console.log("added event listener");
+    vid.addEventListener("click", expand);
+
+    function expand(){
+      this.classList.toggle("testing");
+    }
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
 
 
 
