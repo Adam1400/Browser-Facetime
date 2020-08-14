@@ -175,7 +175,7 @@ function copyToClipboard(text) {
 
 //test
 //document.getElementById("roomInfo").addEventListener("click", addExpand);
-document.querySelector('html').addEventListener("mouseover", addExpand);
+document.querySelector('html').addEventListener("click", addExpand);
 
 
 function addExpand(){
@@ -184,16 +184,12 @@ function addExpand(){
   for (var i = 0; i < numPeers ; i++) {
     const vid = document.getElementsByTagName("video")[i];
     //console.log("added event listener");
-    vid.addEventListener("click", expand);
-
-    function expand(){
-      this.classList.toggle("testing");
-    }
-
+    vid.addEventListener("click", expand);   
   }
+}
 
-
-
+function expand(){
+  this.classList.toggle("testing");
 }
 
 
