@@ -173,10 +173,8 @@ function copyToClipboard(text) {
   document.body.removeChild(dummy);
 }
 
-//test
-//document.getElementById("roomInfo").addEventListener("click", addExpand);
+//expand video when clicked
 document.querySelector('html').addEventListener("click", addExpand);
-
 
 function addExpand(){
   var numPeers = document.getElementsByTagName("video").length;
