@@ -156,12 +156,6 @@ function getURL() {
   copyToClipboard(c_url);
   const popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
-
-
-  // //testing
-  // const vid = document.getElementsByTagName("video")[0];
-  // vid.classList.toggle("testing");
-
 }
 
 function copyToClipboard(text) {
