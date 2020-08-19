@@ -74,7 +74,8 @@ footer{
     position: relative;
     margin: 0.5rem;
     padding-top: 0.75rem;
-    text-align: center;
+    margin-left: 1rem;
+    text-align: left;
     color: black;
 
   
