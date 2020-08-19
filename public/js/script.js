@@ -51,6 +51,7 @@ socket.on("user-disconnected", (userId) => {
   document.querySelector('.currentOcupancy').innerHTML = "Members: "+(countMembers()-1);
   if (peers[userId]) peers[userId].close();
 
+  setTimeout(function(){ alert("Hello"); }, 3000);
   if(("Members: "+countMembers()) !== (document.querySelector('.currentOcupancy').innerHTML))
     {
       //experimental
