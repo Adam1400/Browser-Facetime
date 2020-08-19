@@ -3,6 +3,7 @@ const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer();
 const myVideo = document.createElement("video");
 const peers = {};
+var currentUsers = 1;
 
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
@@ -48,18 +49,14 @@ navigator.mediaDevices.getUserMedia({
 //leave call
 socket.on("user-disconnected", (userId) => {
   console.log("User Disconnected: "+userId);
-  if (peers[userId]) peers[userId].close();
-<<<<<<< HEAD
-
-  setTimeout(function(){ alert("Hello"); }, 3000);
-  if(("Members: "+countMembers()) !== (document.querySelector('.currentOcupancy').innerHTML))
-    {
-      //experimental
-      location.reload();
-    }
   
-=======
->>>>>>> parent of 7d10499... experimental
+  if (peers[userId]) peers[userId].close();
+  currentUsers = currentUsers -1;
+  
+  if(currentUsers !== document.getElementsByTagName("video").length){
+    //MIGRATE HOST
+    location.reload()
+  }
   
 });
 
@@ -91,6 +88,8 @@ function addVideoStream(video, stream) {
   video.addEventListener("loadedmetadata", () => {
     video.play();
     addExpand();
+    currentUsers = document.getElementsByTagName("video").length;
+
   });
   videoGrid.append(video);
 }
