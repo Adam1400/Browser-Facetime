@@ -39,7 +39,7 @@ navigator.mediaDevices.getUserMedia({
   }).catch(function(reason) {
     //peramiters
     //try with no defined peramiters
-    try{
+    
       navigator.mediaDevices.getUserMedia({
         video:false,
         audio: false
@@ -47,10 +47,10 @@ navigator.mediaDevices.getUserMedia({
       .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
-      });
-    }catch{
+      }).catch(function(reason){
+      //else device does not support streaming
       console.log("Device does not suport streaming ==> "+ reason);
-    }
+    });
 });
 
 
