@@ -31,7 +31,6 @@ html
     footer
         .roomInfo(id="roomInfo")
           h4.currentRoom= `${title}`
-          h4.currentOcupancy Members: 1
 
         .controlsWrapper
             .mute(onclick="muteUnmute()")
@@ -57,7 +56,7 @@ html
                     )
                 button.btn.btn-info.invite(type='submit' value='Submit') join
                 button.btn.btn-success.invite(type='button' id='invite') invite
-                .popup
+                .popup(onclick='myFunction()')
                     span#myPopup.popuptext URL Copied to Clipboard 
 
             
