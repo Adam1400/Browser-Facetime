@@ -13,6 +13,8 @@ navigator.mediaDevices.getUserMedia({
     },
     audio: {
       channelCount: 2, //2 for sterio audio 1 for mono
+      echoCancellation: {ideal: true}
+
     }
   })
   .then((stream) => {
