@@ -37,11 +37,12 @@ navigator.mediaDevices.getUserMedia({
       
     });
   }).catch(function(reason) {
+    //peramiters
     //try with no defined peramiters
     try{
       navigator.mediaDevices.getUserMedia({
-        video:true,
-        audio: true
+        video:false,
+        audio: false
       })
       .then((stream) => {
         myVideoStream = stream;
