@@ -47,6 +47,12 @@ navigator.mediaDevices.getUserMedia({
       .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
+
+        socket.on("user-connected", (userId) => {
+          console.log("New User Connected");
+          connectToNewUser(userId, stream);
+          
+        });
       }).catch(function(reason){
       //else device does not support streaming
       console.log("Device does not suport streaming ==> "+ reason);
