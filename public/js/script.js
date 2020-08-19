@@ -39,24 +39,12 @@ navigator.mediaDevices.getUserMedia({
   }).catch(function(reason) {
     //peramiters
     //try with no defined peramiters
-    
-      navigator.mediaDevices.getUserMedia({
-        video:false,
-        audio: false
-      })
-      .then((stream) => {
-        myVideoStream = stream;
-        addVideoStream(myVideo, stream);
-
-        socket.on("user-connected", (userId) => {
+    console.log("Device does not suport streaming ==> "+ reason);
+        
+    socket.on("user-connected", (userId) => {
           console.log("New User Connected");
           connectToNewUser(userId, stream);
-          
-        });
-      }).catch(function(reason){
-      //else device does not support streaming
-      console.log("Device does not suport streaming ==> "+ reason);
-    });
+     });
 });
 
 
