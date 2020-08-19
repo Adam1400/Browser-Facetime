@@ -53,10 +53,10 @@ socket.on("user-disconnected", (userId) => {
   if (peers[userId]) peers[userId].close();
   currentUsers = currentUsers -1;
   
-  // if(currentUsers !== document.getElementsByTagName("video").length){
-  //   //MIGRATE HOST
-  //   location.reload()
-  // }
+  if(currentUsers !== document.getElementsByTagName("video").length){
+    //MIGRATE HOST
+    location.reload()
+  }
   
 });
 
