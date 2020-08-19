@@ -39,6 +39,13 @@ navigator.mediaDevices.getUserMedia({
   }).catch(function(reason) {
     /* failed to apply constraints; reason is why */
     console.log("Device does not suport streaming ==> "+ reason);
+    navigator.mediaDevices.getUserMedia({
+      video:true,
+      audio: true
+    })
+    .then((stream) => {
+      myVideoStream = stream;
+      addVideoStream(myVideo, stream);
 });
 
 
