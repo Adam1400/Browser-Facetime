@@ -34,7 +34,7 @@ navigator.mediaDevices.getUserMedia({
 
     //answer call
     socket.on("user-connected", (userId) => {
-      console.log("User Connected: "+userId);
+      console.log("User Connected: "+userId + " | Ocupency: "+ (countMembers()+1));
       connectToNewUser(userId, stream);
     });
   }).catch(function(reason) {
@@ -47,15 +47,24 @@ navigator.mediaDevices.getUserMedia({
 
 //leave call
 socket.on("user-disconnected", (userId) => {
-  console.log("User Disconnected: "+userId);
+  console.log("User Disconnected: "+userId + " | Ocupency: "+ (countMembers()-1));
+  document.querySelector('.currentOcupancy').innerHTML = "Members: "+(countMembers()-1);
   if (peers[userId]) peers[userId].close();
+
+  if(("Members: "+countMembers()) !== (document.querySelector('.currentOcupancy').innerHTML))
+    {
+      //experimental
+      location.reload();
+    }
+  
   
 });
 
 //brodcast signal
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
-  console.log("My ID: "+ id + " | Room: "+ ROOM_ID);
+  console.log("My ID: "+ id + " | Room: "+ ROOM_ID  + " | Ocupency: "+ countMembers());
+  document.querySelector('.currentOcupancy').innerHTML = "Members: "+ countMembers();
 });
 
 //join call in progress
@@ -80,6 +89,8 @@ function addVideoStream(video, stream) {
   video.addEventListener("loadedmetadata", () => {
     video.play();
     addExpand();
+    document.querySelector('.currentOcupancy').innerHTML = "Members: "+countMembers();
+
   });
   videoGrid.append(video);
 }
@@ -176,8 +187,9 @@ function copyToClipboard(text) {
 
 //expand video when clicked
 function addExpand(){
-  var numPeers = document.getElementsByTagName("video").length;
-  for (var i = 0; i < numPeers ; i++) {
+  members = countMembers();
+  
+  for (var i = 0; i < members ; i++) {
     const vid = document.getElementsByTagName("video")[i];
     //console.log("added event listener");
     vid.addEventListener("click", expand);   
@@ -186,6 +198,13 @@ function addExpand(){
 
 function expand(){
   this.classList.toggle("testing");
+}
+
+//count members
+function countMembers(){
+  var members = document.getElementsByTagName("video").length;
+  //console.log("Ocupency: "+ members);
+  return members;
 }
 
 

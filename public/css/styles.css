@@ -74,8 +74,9 @@ footer{
     position: relative;
     margin: 0.5rem;
     padding-top: 0.75rem;
-    text-align: center;
     color: black;
+    justify-content: space-evenly;
+    display: flex;
 
   
 }
@@ -127,7 +128,7 @@ input{
 }
 
 
-@media(max-width: 750px){
+@media(max-width: 820px){
     .roomInfo{
         display: none;
     }
