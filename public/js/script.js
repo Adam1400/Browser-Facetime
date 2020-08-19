@@ -39,12 +39,12 @@ navigator.mediaDevices.getUserMedia({
   }).catch(function(reason) {
     //peramiters
     //try with no defined peramiters
-    console.log("Device does not suport streaming ==> "+ reason);
-        
-    socket.on("user-connected", (userId) => {
+      let stream = null;
+        socket.on("user-connected", (userId) => {
           console.log("New User Connected");
-          connectToNewUser(userId);
-     });
+          connectToNewUser(userId, stream);
+      console.log("Device does not suport streaming ==> "+ reason);
+    });
 });
 
 
@@ -66,14 +66,19 @@ myPeer.on("open", (id) => {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
-  call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
-  });
-  //leave call
-  call.on("close", () => {
-    video.remove();
+  try{
+    call.on("stream", (userVideoStream) => {
+      addVideoStream(video, userVideoStream);
   });
 
+    //leave call
+    call.on("close", () => {
+      video.remove();
+    });
+  }catch{
+    console.log("no video");
+  }
+  
   peers[userId] = call; //track peers
 }
 
