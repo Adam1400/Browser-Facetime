@@ -51,21 +51,21 @@ socket.on("user-disconnected", (userId) => {
   document.querySelector('.currentOcupancy').innerHTML = "Members: "+(countMembers()-1);
   if (peers[userId]) peers[userId].close();
 
-  setTimeout(function(){ alert("Hello"); }, 3000);
   if(("Members: "+countMembers()) !== (document.querySelector('.currentOcupancy').innerHTML))
     {
-      //experimental
+      //experimental migrate host to prevent ghost video
       location.reload();
     }
-  
-  
+
 });
 
 //brodcast signal
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
-  console.log("My ID: "+ id + " | Room: "+ ROOM_ID  + " | Ocupency: "+ countMembers());
+  
   document.querySelector('.currentOcupancy').innerHTML = "Members: "+ countMembers();
+  console.log("My ID: "+ id + " | Room: "+ ROOM_ID  + " | Ocupency: "+ countMembers());
+  //cursed
 });
 
 //join call in progress
@@ -205,6 +205,7 @@ function expand(){
 function countMembers(){
   var members = document.getElementsByTagName("video").length;
   //console.log("Ocupency: "+ members);
+  if(members === 0){ members = 1}
   return members;
 }
 
