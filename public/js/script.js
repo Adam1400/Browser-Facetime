@@ -40,7 +40,6 @@ navigator.mediaDevices.getUserMedia({
     });
   }).catch(function(reason) {
     //no camera or mic
-
       console.log("Device does not suport streaming ==> "+ reason);
 });
 
