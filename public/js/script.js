@@ -10,7 +10,6 @@ myVideo.muted = true; //so you dont hear yourself
 
 
 navigator.mediaDevices.getUserMedia ||
-navigator.webkitGetUserMedia ||
 navigator.mozGetUserMedia({
     video:{ 
         facingMode: { ideal: "user" }
