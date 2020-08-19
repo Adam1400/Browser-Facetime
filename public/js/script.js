@@ -7,7 +7,11 @@ const peers = {};
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
 
-navigator.mediaDevices.getUserMedia({
+
+
+navigator.mediaDevices.getUserMedia ||
+navigator.webkitGetUserMedia ||
+navigator.mozGetUserMedia({
     video:{ 
         facingMode: { ideal: "user" }
     },
@@ -39,9 +43,9 @@ navigator.mediaDevices.getUserMedia({
   }).catch(function(reason) {
     //peramiters
     //try with no defined peramiters
-      stream = MediaStream.ended;
+      window.stream = stream;
+      console.log(stream);
 
-          //call peer
         myPeer.on("call", (call) => {
           call.answer(stream);
           const video = document.createElement("video");
