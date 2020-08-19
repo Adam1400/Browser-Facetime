@@ -39,26 +39,9 @@ navigator.mediaDevices.getUserMedia({
       
     });
   }).catch(function(reason) {
-    //peramiters
-    //try with no defined peramiters
-      window.stream = stream;
-      console.log(stream);
-
-        myPeer.on("call", (call) => {
-          call.answer(stream);
-          const video = document.createElement("video");
-          call.on("stream", (userVideoStream) => {
-            addVideoStream(video, userVideoStream);
-          });
-        });
-
-        socket.on("user-connected", (userId) => {
-          console.log("New User Connected");
-          connectToNewUser(userId, stream);
-          
+    //no camera or mic
 
       console.log("Device does not suport streaming ==> "+ reason);
-    });
 });
 
 
