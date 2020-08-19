@@ -34,9 +34,8 @@ navigator.mediaDevices.getUserMedia({
 
     //answer call
     socket.on("user-connected", (userId) => {
-      console.log("New User Connected");
+      console.log("User Connected: "+userId);
       connectToNewUser(userId, stream);
-      
     });
   }).catch(function(reason) {
     //no camera or mic
@@ -48,7 +47,7 @@ navigator.mediaDevices.getUserMedia({
 
 //leave call
 socket.on("user-disconnected", (userId) => {
-  console.log("User Disconnected");
+  console.log("User Disconnected: "+userId);
   if (peers[userId]) peers[userId].close();
   
 });
@@ -56,6 +55,7 @@ socket.on("user-disconnected", (userId) => {
 //brodcast signal
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
+  console.log("My ID: "+ id + " | Room: "+ ROOM_ID);
 });
 
 //join call in progress
@@ -63,8 +63,9 @@ function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
+    addVideoStream(video, userVideoStream);   
   });
+
   //leave call
   call.on("close", () => {
     video.remove();
@@ -78,9 +79,11 @@ function addVideoStream(video, stream) {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
     video.play();
+    addExpand();
   });
   videoGrid.append(video);
 }
+
 
 
 
@@ -172,11 +175,8 @@ function copyToClipboard(text) {
 }
 
 //expand video when clicked
-document.querySelector('html').addEventListener("click", addExpand);
-
 function addExpand(){
   var numPeers = document.getElementsByTagName("video").length;
-
   for (var i = 0; i < numPeers ; i++) {
     const vid = document.getElementsByTagName("video")[i];
     //console.log("added event listener");
@@ -187,6 +187,8 @@ function addExpand(){
 function expand(){
   this.classList.toggle("testing");
 }
+
+
 
 
 
