@@ -37,15 +37,19 @@ navigator.mediaDevices.getUserMedia({
       
     });
   }).catch(function(reason) {
-    /* failed to apply constraints; reason is why */
-    console.log("Device does not suport streaming ==> "+ reason);
-    navigator.mediaDevices.getUserMedia({
-      video:true,
-      audio: true
-    })
-    .then((stream) => {
-      myVideoStream = stream;
-      addVideoStream(myVideo, stream);
+    //try with no defined peramiters
+    try{
+      navigator.mediaDevices.getUserMedia({
+        video:true,
+        audio: true
+      })
+      .then((stream) => {
+        myVideoStream = stream;
+        addVideoStream(myVideo, stream);
+      });
+    }catch{
+      console.log("Device does not suport streaming ==> "+ reason);
+    }
 });
 
 
