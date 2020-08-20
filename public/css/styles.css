@@ -36,9 +36,10 @@ video{
 }
 
 /*this needs to be on click*/
-.testing{
+.expand{
   padding: 2.5%;
     width: 57%;
+   
 }
 
 @media(max-width: 450px){

@@ -5,6 +5,7 @@ const myVideo = document.createElement("video");
 const peers = {};
 var currentUsers = 1;
 
+
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
 
@@ -82,11 +83,14 @@ function connectToNewUser(userId, stream) {
 //add stream function
 function addVideoStream(video, stream) {
   video.srcObject = stream;
+  
   video.addEventListener("loadedmetadata", () => {
     video.play();
-    addExpand();
-    currentUsers = document.getElementsByTagName("video").length;
-
+    var currentUsers = document.getElementsByTagName("video").length;
+ 
+      addExpand(currentUsers);
+    
+  
   });
   videoGrid.append(video);
 }
@@ -179,18 +183,22 @@ function copyToClipboard(text) {
 }
 
 //expand video when clicked
-function addExpand(){
-  var numPeers = document.getElementsByTagName("video").length;
+function addExpand(numPeers){
+  
   for (var i = 0; i < numPeers ; i++) {
     const vid = document.getElementsByTagName("video")[i];
-    //console.log("added event listener");
-    vid.addEventListener("click", expand);   
+    
+    if(vid.id !== "hasEvent"){
+    vid.addEventListener("click", expand);
+    vid.setAttribute("id", "hasEvent");
+    }   
+  }
+  function expand(){
+    this.classList.toggle("expand");
   }
 }
 
-function expand(){
-  this.classList.toggle("testing");
-}
+
 
 
 
