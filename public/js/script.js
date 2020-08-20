@@ -55,7 +55,7 @@ socket.on("user-disconnected", (userId) => {
 
   if(currentUsers !== document.getElementsByTagName("video").length){
     //MIGRATE HOST
-    location.reload();
+    //location.reload();
   } 
 });
 
