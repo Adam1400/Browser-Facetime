@@ -50,14 +50,13 @@ navigator.mediaDevices.getUserMedia({
 socket.on("user-disconnected", (userId) => {
   console.log("User Disconnected: "+userId);
   
-  if (peers[userId]) peers[userId].close();
+  if (peers[userId]) {peers[userId].close()};
   currentUsers = currentUsers -1;
-  
+
   if(currentUsers !== document.getElementsByTagName("video").length){
     //MIGRATE HOST
-    location.reload()
-  }
-  
+    location.reload();
+  } 
 });
 
 //brodcast signal
@@ -93,9 +92,6 @@ function addVideoStream(video, stream) {
   });
   videoGrid.append(video);
 }
-
-
-
 
 
 //mute functionality
