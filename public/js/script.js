@@ -11,9 +11,7 @@ myVideo.muted = true; //so you dont hear yourself
 
 
 navigator.mediaDevices.getUserMedia({
-    video:{ 
-        facingMode: { ideal: "user" }
-    },
+    video: true ,
     audio: {
       channelCount: 2, //2 for sterio audio 1 for mono
       echoCancellation: {ideal: true}
