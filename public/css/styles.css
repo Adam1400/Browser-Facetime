@@ -139,6 +139,12 @@ input{
 
 
 @media(max-width: 750px){
+    .videoGrid{
+        margin-bottom: 3rem;
+    }
+    video{
+        height:0%;
+    }
     .roomInfo{
         display: none;
     }
