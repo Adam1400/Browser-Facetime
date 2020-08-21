@@ -6,8 +6,12 @@ const peers = {};
 var currentUsers = 1;
 
 
+
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
+myVideo.setAttribute('autoplay', '');
+myVideo.setAttribute('muted', '');
+myVideo.setAttribute('playsinline', '');
 
 
 
