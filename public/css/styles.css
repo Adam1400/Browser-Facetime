@@ -69,6 +69,13 @@ video{
     
 }
 
+@media (orientation: landscape) {
+      video{
+          height:0%;
+      
+        }
+  }
+
 
 
 footer{
