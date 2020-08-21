@@ -90,6 +90,8 @@ function addVideoStream(video, stream) {
   
   video.addEventListener("loadedmetadata", () => {
     video.play();
+    video.setAttribute('autoplay', '');
+    video.setAttribute('playsinline', '');
     var currentUsers = document.getElementsByTagName("video").length;
     addExpand(currentUsers);
   });
