@@ -1,5 +1,8 @@
 
-
+html{
+    background: rgb(209,190,66);
+    background: linear-gradient(306deg, rgba(209,190,66,1) 0%, rgba(188,107,204,1) 100%);
+}
 
 body{
     background: rgb(209,190,66);
