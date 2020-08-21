@@ -22,7 +22,6 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-content: center;
 }
 
 video{
@@ -66,18 +65,13 @@ video{
       }
     
 }
-@media(max-height: 450px){
-    .videoGrid{
-        margin-bottom: 5rem;
-    }
-    video{
-        
-        margin: 0%;
-        padding:0%;
-      
-    }
 
-    
+
+@media(max-width: 400px){
+   /*for landscape mode*/ 
+    video{
+        height:0%;
+    }  
 }
 
 
@@ -153,6 +147,9 @@ input{
 
 
 @media(max-width: 750px){
+    .roomInfo{
+        display: none;
+    }
     .controlsWrapper{
         flex: 1;
         margin-right: .2rem;
