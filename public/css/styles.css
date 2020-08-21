@@ -67,13 +67,6 @@ video{
 }
 
 
-@media(max-width: 400px){
-   /*for landscape mode*/ 
-    video{
-        height:0%;
-    }  
-}
-
 
 footer{
     position: fixed;
