@@ -87,10 +87,7 @@ function addVideoStream(video, stream) {
   video.addEventListener("loadedmetadata", () => {
     video.play();
     var currentUsers = document.getElementsByTagName("video").length;
- 
-      addExpand(currentUsers);
-    
-  
+    addExpand(currentUsers);
   });
   videoGrid.append(video);
 }
@@ -183,9 +180,9 @@ function copyToClipboard(text) {
 }
 
 //expand video when clicked
-function addExpand(numPeers){
+function addExpand(currentUsers){
   
-  for (var i = 0; i < numPeers ; i++) {
+  for (var i = 0; i < currentUsers ; i++) {
     const vid = document.getElementsByTagName("video")[i];
     
     if(vid.id !== "hasEvent"){
