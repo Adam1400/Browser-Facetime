@@ -66,6 +66,9 @@ video{
 }
 
 @media (orientation: landscape) {
+    .videoWrapper{
+        padding-bottom: 2rem;
+    }
       video{
           height:0%;
       
