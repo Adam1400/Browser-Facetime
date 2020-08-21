@@ -43,8 +43,10 @@ video{
 }
 
 @media(max-width: 450px){
-    .videoWrapper{
-        margin-bottom: 5rem;
+    .videoGrid{
+        display: -webkit-flex;
+        flex-wrap: wrap;
+    
     }
     video{
         margin-bottom: 1%;
@@ -52,10 +54,15 @@ video{
         width:80%;
     }
 
+    /*disable zoom in portrate mode*/
     video:hover{
         width: 80%;
         padding:0%;
     }
+    .expand{
+        width: 80%;
+        padding:0%;   
+      }
     
 }
 
