@@ -43,7 +43,7 @@ video{
 }
 
 @media(max-width: 450px){
-    .videoGrid{
+    .videoWrapper{
         margin-bottom: 3rem;
     }
     video{
