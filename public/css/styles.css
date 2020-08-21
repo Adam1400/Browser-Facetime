@@ -50,16 +50,16 @@ video{
         margin: 0%;
         margin-bottom: 0.5rem;
         padding:0%;
-        width:80%;
+        width:83%;
     }
 
     /*disable zoom in portrate mode*/
     video:hover{
-        width: 80%;
+        width: 83%;
         padding:0%;
     }
     .expand{
-        width: 80%;
+        width: 83%;
         padding:0%;   
       }
     
@@ -71,11 +71,13 @@ video{
     }
       video{
           height:0%;
+         
       
         }
         .expand{
             height:0%;
             padding-top: 0%;
+            width: 52%;
             
         }
   }
