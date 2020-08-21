@@ -25,6 +25,7 @@ body{
 }
 
 video{
+    height: auto;
     transform: scaleX(1.2);
     width: 25%;
     padding: 0%;
