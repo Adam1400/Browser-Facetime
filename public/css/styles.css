@@ -25,7 +25,6 @@ body{
 }
 
 video{
-    height: auto;
     transform: scaleX(1.2);
     width: 25%;
     padding: 0%;
@@ -38,14 +37,14 @@ video{
 
 /*this needs to be on click*/
 .expand{
-  padding: 2.5%;
+  padding: 2.5rem;
     width: 57%;
    
 }
 
 @media(max-width: 450px){
     .videoWrapper{
-        margin-bottom: 3rem auto;
+        padding-bottom: 5rem;
     }
     video{
         height:0%;
