@@ -29,6 +29,7 @@ video{
     width: 25%;
     padding: 0%;
     margin: 1%;
+    height:0%;
     position: relative;
     background-color: transparent;
     transition: .8s all ease-in-out;
@@ -44,7 +45,7 @@ video{
 
 @media(max-width: 450px){
     .videoGrid{
-        padding-bottom: 5%;
+        margin-bottom: 5rem;
     }
     video{
         height:0%;
