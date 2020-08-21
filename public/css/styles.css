@@ -43,13 +43,9 @@ video{
 }
 
 @media(max-width: 450px){
-    .videoGrid{
-        display: -webkit-flex;
-        flex-wrap: wrap;
-    
-    }
     video{
-        margin-bottom: 1%;
+        margin: 0%;
+        margin-bottom: 0.5rem;
         padding:0%;
         width:80%;
     }
