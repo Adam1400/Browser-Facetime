@@ -72,6 +72,8 @@ video{
         }
         .expand{
             height:0%;
+            padding-top: 0%;
+            
         }
   }
 
