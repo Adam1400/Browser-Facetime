@@ -54,10 +54,7 @@ video{
     }
 
     /*disable zoom in portrate mode*/
-    video:hover{
-        width: 30%;
-        padding:0%;
-    }
+    
     .expand{
         width: 30%;
         padding:0%;   
