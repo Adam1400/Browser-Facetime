@@ -62,23 +62,25 @@ video{
         width: 83%;
         padding:0%;   
       }
+      /*for landscape mode*/
+      @media (orientation: landscape) {
+        .videoWrapper{
+            padding-bottom: 2rem;
+        }
+          video{
+              height:0%;    
+            }
+            .expand{
+                height:0%;
+                padding-top: 0%;
+                width: 52%;
+                
+            }
+      }
     
 }
 
-@media (orientation: landscape) {
-    .videoWrapper{
-        padding-bottom: 2rem;
-    }
-      video{
-          height:0%;    
-        }
-        .expand{
-            height:0%;
-            padding-top: 0%;
-            width: 52%;
-            
-        }
-  }
+
 
 
 
