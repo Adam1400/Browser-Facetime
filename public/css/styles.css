@@ -56,8 +56,10 @@ video{
     /*disable zoom in portrate mode*/
     
     .expand{
-        width: 30%;
-        padding:0%;   
+        width: 46%;
+        margin-right: 1%;
+        
+        margin-left: 1%;    
       }
       /*for landscape*/
       @media (orientation: landscape) {
