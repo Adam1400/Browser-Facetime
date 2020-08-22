@@ -46,6 +46,7 @@ video{
         padding-bottom: 5rem;
     }
     video{
+        height:0%;
         width: 40%;
         margin-right: 5%;
         margin-left: 5%;   
@@ -55,7 +56,7 @@ video{
 
     /*expand videos in portrate mode*/
     .expand{
-       height:0%;
+       
         margin: 0%;
         margin-bottom: 0.5rem;
         padding:.75%;
