@@ -55,14 +55,14 @@ video{
 
     /*disable zoom in portrate mode*/
     video:hover{
-        width: 83%;
+        width: 40%;
         padding:0%;
     }
     .expand{
-        width: 50%;
+        width: 83%;
         padding:0%;   
       }
-      /*for landscape mode*/
+      /*for landscape*/
       @media (orientation: landscape) {
         .videoWrapper{
             padding-bottom: 2rem;
