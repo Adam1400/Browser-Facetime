@@ -46,21 +46,20 @@ video{
         padding-bottom: 5rem;
     }
     video{
-        height:0%;
-        margin: 0%;
-        margin-bottom: 0.5rem;
-        padding:0%;
-        width:83%;
+        width: 40%;
+        margin-right: 5%;
+        margin-left: 5%;   
+        padding-bottom:0%;
+        padding-top:0%;
     }
 
-    /*shrink videos in portrate mode*/
-    
+    /*expand videos in portrate mode*/
     .expand{
-        width: 46%;
-        margin-right: 2%;
-        margin-left: 2%;   
-        padding-bottom:0%;
-          
+       height:0%;
+        margin: 0%;
+        margin-bottom: 0.5rem;
+        padding:.75%;
+        width:83%;  
       }
       /*for landscape*/
       @media (orientation: landscape) {
