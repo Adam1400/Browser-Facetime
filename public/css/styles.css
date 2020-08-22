@@ -61,9 +61,12 @@ video{
         margin-bottom: 0.5rem;
         padding:.75%;
         width:83%;  
-      }
-      /*for landscape*/
-      @media (orientation: landscape) {
+      }  
+}
+
+/*for landscape*/
+      @media (orientation: landscape) 
+      and (max-device-width: 812px) {
         .videoWrapper{
             padding-bottom: 2rem;
         }
@@ -77,8 +80,6 @@ video{
                 
             }
       }
-    
-}
 
 
 
