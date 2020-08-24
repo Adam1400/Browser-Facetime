@@ -41,6 +41,10 @@ video{
    
 }
 
+.hide{
+    display:none;
+}
+
 @media(max-width: 450px){
     .videoWrapper{
         padding-bottom: 5rem;
@@ -77,7 +81,6 @@ video{
                 height:0%;
                 padding-top: 0%;
                 width: 52%;
-                
             }
       }
 

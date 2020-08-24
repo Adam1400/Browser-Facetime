@@ -8,6 +8,7 @@ var currentUsers = 1;
 
 
 
+
 let myVideoStream;
 myVideo.muted = true; //so you dont hear yourself
 myVideo.setAttribute('autoplay', '');// for safari
@@ -19,7 +20,7 @@ myVideo.setAttribute('playsinline', '');
 navigator.mediaDevices.getUserMedia({
     video: true ,
     audio: {
-      channelCount: 2, //2 for sterio audio 1 for mono
+      channelCount: {ideal: 2}, //2 for sterio audio 1 for mono
       echoCancellation: {ideal: true}
 
     }
@@ -42,6 +43,7 @@ navigator.mediaDevices.getUserMedia({
       console.log("User Connected: "+userId);
       connectToNewUser(userId, stream);
     });
+    
   }).catch(function(reason) {
     //no camera or mic
       console.log("Device does not suport streaming ==> "+ reason);
@@ -53,14 +55,14 @@ navigator.mediaDevices.getUserMedia({
 //leave call
 socket.on("user-disconnected", (userId) => {
   console.log("User Disconnected: "+userId);
-  
-  if (peers[userId]) {peers[userId].close()};
-  currentUsers = currentUsers -1;
-
-  if(currentUsers !== document.getElementsByTagName("video").length){
-    //MIGRATE HOST
+  if (peers[userId]) {
+    peers[userId].close()}
+  else{
     location.reload();
-  } 
+  };
+ 
+  
+  
 });
 
 //brodcast signal
@@ -73,8 +75,9 @@ myPeer.on("open", (id) => {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
+  
   call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);   
+    addVideoStream(video, userVideoStream, userId);   
   });
 
   //leave call
@@ -86,7 +89,7 @@ function connectToNewUser(userId, stream) {
 }
 
 //add stream function
-function addVideoStream(video, stream) {
+function addVideoStream(video, stream, ID) {
   video.srcObject = stream;
   
   video.addEventListener("loadedmetadata", () => {
@@ -94,9 +97,11 @@ function addVideoStream(video, stream) {
     video.setAttribute('autoplay', '');//for ios support
     video.setAttribute('playsinline', '');
     var currentUsers = document.getElementsByTagName("video").length;
-    addExpand(currentUsers);
+    addExpand(currentUsers, ID);
+
   });
   videoGrid.append(video);
+  
 }
 
 
@@ -187,7 +192,7 @@ function copyToClipboard(text) {
 }
 
 //expand video when clicked
-function addExpand(currentUsers){
+function addExpand(currentUsers, ID){
   
   for (var i = 0; i < currentUsers ; i++) {
     const vid = document.getElementsByTagName("video")[i];
@@ -195,6 +200,7 @@ function addExpand(currentUsers){
     if(vid.id !== "hasEvent"){
     vid.addEventListener("click", expand);
     vid.setAttribute("id", "hasEvent");
+    vid.classList.add(ID);
     }   
   }
   function expand(){
