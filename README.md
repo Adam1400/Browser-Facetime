@@ -1,4 +1,4 @@
 # Browser-Facetime
 Free video chat service in the browser. 
-works best with google chrome.
+Works best with Google Chrome. Not compatable with current versions of Safari.    
 Try it out | https://avmu.herokuapp.com/test
